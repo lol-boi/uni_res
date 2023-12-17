@@ -1,0 +1,460 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.1.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.02 sec)
+
+mysql> create database lab5_221b056;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> use lab5_221b0656
+ERROR 1049 (42000): Unknown database 'lab5_221b0656'
+mysql> use lab5_221b056
+Database changed
+mysql> create table emp (fname varchar(20), ssn char(9), salary int(6));
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> desc emp
+    -> ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> insert into values
+    -> ('Jhon', '123456789',30000),
+    -> ("Franklin", "333445555", 40000),
+    -> ("Joyce", "453453453", 25000),
+    -> ("Ramesh", "666884444", 38000),
+    -> ("James", "888665555", 55000),
+    -> ("Jennifer", "987654321", 43000),
+    -> ("Ahmad", "987987987", 25000),
+    -> ("Alicia", "999887777", 25000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values
+('Jhon', '123456789',30000),
+("Franklin", "333445555", 40000),
+("Joyce", ' at line 1
+mysql> select * from emp;
+Empty set (0.01 sec)
+
+mysql> insert into emp values
+    -> ('Jhon', '123456789',30000),
+    -> ("Franklin", "333445555", 40000),
+    -> ("Joyce", "453453453", 25000),
+    -> ("Ramesh", "666884444", 38000),
+    -> ("James", "888665555", 55000),
+    -> ("Jennifer", "987654321", 43000),
+    -> ("Ahmad", "987987987", 25000),
+    -> ("Alicia", "999887777", 25000);
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++----------+-----------+--------+
+| fname    | ssn       | salary |
++----------+-----------+--------+
+| Jhon     | 123456789 |  30000 |
+| Franklin | 333445555 |  40000 |
+| Joyce    | 453453453 |  25000 |
+| Ramesh   | 666884444 |  38000 |
+| James    | 888665555 |  55000 |
+| Jennifer | 987654321 |  43000 |
+| Ahmad    | 987987987 |  25000 |
+| Alicia   | 999887777 |  25000 |
++----------+-----------+--------+
+8 rows in set (0.01 sec)
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table emp add column gender char(2);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(2)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp;
++----------+-----------+--------+--------+
+| fname    | ssn       | salary | gender |
++----------+-----------+--------+--------+
+| Jhon     | 123456789 |  30000 | NULL   |
+| Franklin | 333445555 |  40000 | NULL   |
+| Joyce    | 453453453 |  25000 | NULL   |
+| Ramesh   | 666884444 |  38000 | NULL   |
+| James    | 888665555 |  55000 | NULL   |
+| Jennifer | 987654321 |  43000 | NULL   |
+| Ahmad    | 987987987 |  25000 | NULL   |
+| Alicia   | 999887777 |  25000 | NULL   |
++----------+-----------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> alter table emp add column email varchar(30) after dno;
+ERROR 1054 (42S22): Unknown column 'dno' in 'emp'
+mysql> alter table emp add column email varchar(30) after gender;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(2)     | YES  |     | NULL    |       |
+| email  | varchar(30) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp;
++----------+-----------+--------+--------+-------+
+| fname    | ssn       | salary | gender | email |
++----------+-----------+--------+--------+-------+
+| Jhon     | 123456789 |  30000 | NULL   | NULL  |
+| Franklin | 333445555 |  40000 | NULL   | NULL  |
+| Joyce    | 453453453 |  25000 | NULL   | NULL  |
+| Ramesh   | 666884444 |  38000 | NULL   | NULL  |
+| James    | 888665555 |  55000 | NULL   | NULL  |
+| Jennifer | 987654321 |  43000 | NULL   | NULL  |
+| Ahmad    | 987987987 |  25000 | NULL   | NULL  |
+| Alicia   | 999887777 |  25000 | NULL   | NULL  |
++----------+-----------+--------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> alter table emp drop column email;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(2)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table emp modify column gender char(1);
+Query OK, 8 rows affected (0.03 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table emp add constraint chk1 check (gender in ('m','f'));
+Query OK, 8 rows affected (0.04 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp;
++----------+-----------+--------+--------+
+| fname    | ssn       | salary | gender |
++----------+-----------+--------+--------+
+| Jhon     | 123456789 |  30000 | NULL   |
+| Franklin | 333445555 |  40000 | NULL   |
+| Joyce    | 453453453 |  25000 | NULL   |
+| Ramesh   | 666884444 |  38000 | NULL   |
+| James    | 888665555 |  55000 | NULL   |
+| Jennifer | 987654321 |  43000 | NULL   |
+| Ahmad    | 987987987 |  25000 | NULL   |
+| Alicia   | 999887777 |  25000 | NULL   |
++----------+-----------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql> alter table emp add constraint emp_pk primary key(ssn);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| fname  | varchar(20) | YES  |     | NULL    |       |
+| ssn    | char(9)     | NO   | PRI | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| gender | char(1)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table emp add sup_ssn char(9);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| fname   | varchar(20) | YES  |     | NULL    |       |
+| ssn     | char(9)     | NO   | PRI | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | NULL    |       |
+| sup_ssn | char(9)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table add foreign key(sup_ssn) references emp(ssn);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add foreign key(sup_ssn) references emp(ssn)' at line 1
+mysql> alter table add constraint foreign key(sup_ssn) references emp(ssn);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add constraint foreign key(sup_ssn) references emp(ssn)' at line 1
+mysql> alter table add foreign key(sup_ssn) references emp(ssn);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add foreign key(sup_ssn) references emp(ssn)' at line 1
+mysql>
+mysql>
+mysql> alter table add foreign key(sup_ssn) references emp(ssn);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add foreign key(sup_ssn) references emp(ssn)' at line 1
+mysql> alter table add constraint emp_fk1 foreign key(sup_ssn) references emp(ssn);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add constraint emp_fk1 foreign key(sup_ssn) references emp(ssn)' at line 1
+mysql> alter table emp
+    -> add constraint emp_fk1
+    -> foreign key (sup_ssn)
+    -> references emp(ssn);
+Query OK, 8 rows affected (0.03 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| fname   | varchar(20) | YES  |     | NULL    |       |
+| ssn     | char(9)     | NO   | PRI | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | NULL    |       |
+| sup_ssn | char(9)     | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table dept (dno int primary key, dname char(3), mgr int references emp(ssn));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc dept;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| dno   | int     | NO   | PRI | NULL    |       |
+| dname | char(3) | YES  |     | NULL    |       |
+| mgr   | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table emp drop primary key;
+ERROR 1553 (HY000): Cannot drop index 'PRIMARY': needed in a foreign key constraint
+mysql> alter table emp drop foreign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table emp drop foreign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table emp drop constraint emp_fk1;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| fname   | varchar(20) | YES  |     | NULL    |       |
+| ssn     | char(9)     | NO   | PRI | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | NULL    |       |
+| sup_ssn | char(9)     | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table emp drop primary key;
+Query OK, 8 rows affected (0.03 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| fname   | varchar(20) | YES  |     | NULL    |       |
+| ssn     | char(9)     | NO   |     | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | NULL    |       |
+| sup_ssn | char(9)     | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> Drop table dept;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_lab5_221b056 |
++------------------------+
+| emp                    |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> create table dept (dno int primary key, dname char(3), mgr int references emp(ssn));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> rename table dept to depart;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_lab5_221b056 |
++------------------------+
+| depart                 |
+| emp                    |
++------------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table dept (dno int primary key, dname char(3) default 'CSE', mgr int references
+    -> emp(ssn));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_lab5_221b056 |
++------------------------+
+| depart                 |
+| dept                   |
+| emp                    |
++------------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc dept
+    -> ;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| dno   | int     | NO   | PRI | NULL    |       |
+| dname | char(3) | YES  |     | CSE     |       |
+| mgr   | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dept (dno, mgr) values (2,123456789);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++-----+-------+-----------+
+| dno | dname | mgr       |
++-----+-------+-----------+
+|   2 | CSE   | 123456789 |
++-----+-------+-----------+
+1 row in set (0.00 sec)
+
+mysql> alter table dept alter column dno drop default;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept
+    -> ;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| dno   | int     | NO   | PRI | NULL    |       |
+| dname | char(3) | YES  |     | CSE     |       |
+| mgr   | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table dept alter column dname drop default;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| dno   | int     | NO   | PRI | NULL    |       |
+| dname | char(3) | YES  |     | NULL    |       |
+| mgr   | int     | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
