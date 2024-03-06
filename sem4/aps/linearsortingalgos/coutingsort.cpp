@@ -28,20 +28,20 @@ void CountSort(int arr[], int size)
 
 int main()
 {
-    int n; 
-    cout << "Enter number of elements: ";
-    cin >> n;
-    int arr[n];
-    for(int i =0; i<n ; i++){
+    int size;
+    cout << "Enter the size of the array:";
+    cin >> size;
+    int arr[size];
+    for(int i = 0; i<size; i++){
         arr[i] = rand()%100;
     }
     cout << endl <<  "Printing array in its orginal condition: ";
-    for (int i = 0; i < sz; i++){
+    for (int i = 0; i < size; i++){
         cout << arr[i] << " ";
     }
-    CountSort(arr, sz);
+    CountSort(arr, size);
     cout << endl <<  "Printing array after sorting: ";
-    for (size_t i = 0; i < sz; i++){
+    for (int i = 0; i < size; i++){
         cout << arr[i] << "  ";
     }
     cout << endl;
